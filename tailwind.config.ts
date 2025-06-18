@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
 	darkMode: ["class"],
@@ -19,6 +20,7 @@ export default {
 		},
 		extend: {
 			colors: {
+        // Shadcn/Radix style variable mappings
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -52,22 +54,35 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        // PRD specific color names (mapped to CSS variables)
+        primaryText: 'hsl(var(--foreground))', // PRD: #0F0F0F
+        secondaryText: 'hsl(var(--muted-foreground))', // PRD: #6F767E
+        accentSecondary: 'hsl(var(--color-accent-secondary))', // PRD: #4CAF50
+        success: 'hsl(var(--color-success))', // PRD: #4CAF50
+
+        // Sidebar specific colors
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
+          background: 'hsl(var(--sidebar-background))', // Alias for clarity
 					foreground: 'hsl(var(--sidebar-foreground))',
+          mutedForeground: 'hsl(var(--sidebar-muted-foreground))',
 					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					primaryForeground: 'hsl(var(--sidebar-primary-foreground))',
 					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					accentForeground: 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+        // Corresponds to --radius variable in CSS (0.5rem)
+				lg: 'var(--radius)', // -> 0.5rem (becomes `rounded-lg`)
+				md: 'calc(var(--radius) - 2px)', // -> 0.375rem (becomes `rounded-md`)
+				sm: 'calc(var(--radius) - 4px)' // -> 0.25rem (becomes `rounded-sm`)
 			},
+      fontFamily: {
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
